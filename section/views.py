@@ -1,0 +1,8 @@
+from django.shortcuts import render
+from .models import Car
+
+
+def index_view(request):
+    cars = Car.objects.all()
+
+    return render(request, 'section/index.html',{'cars':cars})
