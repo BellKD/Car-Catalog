@@ -3,21 +3,26 @@
 <head>
     <meta charset="UTF-8" />
     <title>CAR CATALOG</title>
+    <br><br>
 
-    <!-- ✅ Bootstrap 5.3 CSS -->
+    <!-- Bootstrap 5.3 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
-
         .card-img-top {
-            max-height: 190px;
+            max-height: 250px;
             object-fit: cover;
         }
     </style>
+    <style>
+  body {
+    background-color: #e6eaea; /* светло-голубой, меняй на любой цвет */
+  }
+</style>
+
 </head>
 <body>
 
-<!-- ✅ Контейнер с карточками -->
 <div class="container my-5">
     <h1 class="mb-4 text-center">CAR CATALOG</h1>
 
@@ -25,15 +30,15 @@
         {% for car in cars %}
         <div class="col">
             <div class="card h-100 shadow-sm">
-                <img src="{{ car.image.url }}" class="card-img-top" alt="{{ car.title }}">
-                <div class="card-body">
-                    <h5 class="card-title">{{ car.title }}</h5>
-                    <p class="card-text">Model: {{ car.model }}</p>
-                    <p class="card-text">Year: {{ car.year }}</p>
-                    <p class="card-text">Price: {{ car.price }}</p>
-                </div>
-                <div class="card-footer">
-                    <small class="text-muted">Category: {{ car.category.title }}</small>
+                <a href="{% url 'car_detail' car.pk %}">
+                    <img src="{{ car.image.url }}" class="card-img-top" alt="{{ car.title }}">
+                </a>
+                <div class="card-body text-center">
+                    <h5 class="card-title">
+                        <a href="{% url 'car_detail' car.pk %}" class="text-decoration-none text-dark">
+                            {{ car.title }}
+                        </a>
+                    </h5>
                 </div>
             </div>
         </div>
@@ -41,7 +46,7 @@
     </div>
 </div>
 
-<!-- ✅ Bootstrap 5.3 JS Bundle -->
+<!-- Bootstrap 5.3 JS Bundle -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
